@@ -1,21 +1,27 @@
 import * as  React from "react";
-import { Text, View } from "react-native";
+import { Button, Text, View, } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-function EventsScreen() {
+function EventsScreen({ navigation }) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'lightblue' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'lightblue' }}>
         <Text>Events!</Text>
-      </View>
+        <Button title='You have won $1mm! Click here!' onPress= {()=> navigation.navigate("Don't get scammed")}/>
+    </View>
     );
-  }
+}
 
-  const Stack = createStackNavigator();
+function EventsSecondScreen(){
+    return <Text>Don't get scammed</Text>;
+}
 
-  export default function EventsStack(){
-      return(
-      <Stack.Navigator>
-          <Stack.Screen name= 'Events' component={EventsScreen} />
-      </Stack.Navigator>
-      )
-  }
+const Stack = createStackNavigator();
+
+export default function EventsStack(){
+    return(
+    <Stack.Navigator>
+        <Stack.Screen name= 'Events' component={EventsScreen} />
+        <Stack.Screen name= "Don't get scammed" component= {EventsSecondScreen} />
+    </Stack.Navigator>
+    )
+}
